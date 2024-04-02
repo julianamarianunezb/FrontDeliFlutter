@@ -191,7 +191,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
   }
 
   Future<List<dynamic>> fetchInsumos() async {
-    final response = await http.get(Uri.parse('https://backdeliflutter.onrender.com/api/insumos/'));
+    final response = await http.get(Uri.parse('https://backendflutterdeli-1.onrender.com/api/insumos/'));
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -209,7 +209,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://backdeliflutter.onrender.com/api/insumos/'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/insumos/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -327,7 +327,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
 
     try {
       final response = await http.put(
-        Uri.parse('https://backdeliflutter.onrender.com/api/insumos/$id'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/insumos/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -368,8 +368,10 @@ class _InsumosScreenState extends State<InsumosScreen> {
               onPressed: () async {
                 try {
                   final response = await http.delete(
-                    Uri.parse('https://backdeliflutter.onrender.com/api/insumos/$id'),
+                    Uri.parse('https://backendflutterdeli-1.onrender.com/api/insumos/$id'),
                   );
+
+                  
 
                   if (response.statusCode == 200) {
                     fetchInsumos().then((insumos) {

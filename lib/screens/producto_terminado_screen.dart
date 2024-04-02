@@ -223,7 +223,7 @@ class _ProductoTerminadoScreenState extends State<ProductoTerminadoScreen> {
 
   Future<List<dynamic>> fetchProductosTerminados() async {
     final response =
-        await http.get(Uri.parse('https://backdeliflutter.onrender.com/api/productos-terminados/'));
+        await http.get(Uri.parse('https://backendflutterdeli-1.onrender.com/api/productos-terminados/'));
 
     if (response.statusCode == 200) {
       final List<dynamic> productos = jsonDecode(response.body);
@@ -242,7 +242,7 @@ class _ProductoTerminadoScreenState extends State<ProductoTerminadoScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://backdeliflutter.onrender.com/api/productos-terminados/'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/productos-terminados/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -374,7 +374,7 @@ class _ProductoTerminadoScreenState extends State<ProductoTerminadoScreen> {
 
     try {
       final response = await http.put(
-        Uri.parse('https://backdeliflutter.onrender.com/api/productos-terminados/$id'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/productos-terminados/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -411,7 +411,7 @@ class _ProductoTerminadoScreenState extends State<ProductoTerminadoScreen> {
             onPressed: () async {
               try {
                 final response = await http.delete(
-                  Uri.parse('https://backdeliflutter.onrender.com/api/productos-terminados/$id'),
+                  Uri.parse('https://backendflutterdeli-1.onrender.com/api/productos-terminados/$id'),
                   headers: <String, String>{
                     'Content-Type': 'application/json; charset=UTF-8',
                   },

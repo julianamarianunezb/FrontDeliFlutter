@@ -277,7 +277,7 @@ class _OrdenesProduccionScreenState extends State<OrdenesProduccionScreen> {
 
   Future<List<dynamic>> fetchOrdenesProduccion() async {
     final response =
-        await http.get(Uri.parse('https://backdeliflutter.onrender.com/api/ordenes-produccion/'));
+        await http.get(Uri.parse('https://backendflutterdeli-1.onrender.com/api/ordenes-produccion/'));
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -343,7 +343,7 @@ class _OrdenesProduccionScreenState extends State<OrdenesProduccionScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://backdeliflutter.onrender.com/api/ordenes-produccion/'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/ordenes-produccion/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -546,7 +546,7 @@ class _OrdenesProduccionScreenState extends State<OrdenesProduccionScreen> {
 
     try {
       final response = await http.put(
-        Uri.parse('https://backdeliflutter.onrender.com/api/ordenes-produccion/$id'),
+        Uri.parse('https://backendflutterdeli-1.onrender.com/api/ordenes-produccion/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -585,7 +585,7 @@ class _OrdenesProduccionScreenState extends State<OrdenesProduccionScreen> {
             onPressed: () async {
               try {
                 final response =
-                    await http.delete(Uri.parse('https://backdeliflutter.onrender.com/api/ordenes-produccion/$id'));
+                    await http.delete(Uri.parse('https://backendflutterdeli-1.onrender.com/api/ordenes-produccion/$id'));
 
                 if (response.statusCode == 200) {
                   fetchOrdenesProduccion().then((ordenes) {
