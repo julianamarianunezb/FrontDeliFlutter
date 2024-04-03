@@ -17,6 +17,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _cantidadController = TextEditingController();
   final TextEditingController _unidadMedidaController = TextEditingController();
+  final TextEditingController _observacionesController = TextEditingController();
 
   @override
   void initState() {
@@ -75,7 +76,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
             ),
             child: ListTile(
               title: Text(insumo['nombre'], style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 0, 0, 0))),
-              subtitle: Text('Cantidad: ${insumo['cantidad']}, Unidad de Medida: ${insumo['unidadMedida']}', style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              subtitle: Text('Cantidad: ${insumo['cantidad']}, Unidad de Medida: ${insumo['unidadMedida']}, Observaciones: ${insumo['observaciones']}', style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -108,6 +109,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
           _nombreController.clear();
           _cantidadController.clear();
           _unidadMedidaController.clear();
+          _observacionesController.clear();
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -162,6 +164,20 @@ class _InsumosScreenState extends State<InsumosScreen> {
                             return null;
                           },
                         ),
+                         TextFormField(
+                          controller: _observacionesController,
+                          decoration: const InputDecoration(labelText: 'Observaciones', labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, ingresa la observación';
+                            }
+                            if (!RegExp(r'^[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ ]+$').hasMatch(value)) {
+                              return 'La observación solo puede contener letras';
+                            }
+                            return null;
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -205,6 +221,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
       'nombre': _nombreController.text,
       'cantidad': int.parse(_cantidadController.text),
       'unidadMedida': _unidadMedidaController.text,
+      'observaciones': _observacionesController.text
     };
 
     try {
@@ -220,6 +237,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
         _nombreController.clear();
         _cantidadController.clear();
         _unidadMedidaController.clear();
+        _observacionesController.clear();
 
         fetchInsumos().then((insumos) {
           setState(() {
@@ -239,6 +257,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
     _nombreController.text = '';
     _cantidadController.text = insumo['cantidad'].toString();
     _unidadMedidaController.text = insumo['unidadMedida'];
+    _observacionesController.text = '';
 
     showDialog(
       context: context,
@@ -294,6 +313,20 @@ class _InsumosScreenState extends State<InsumosScreen> {
                       return null;
                     },
                   ),
+                   TextFormField(
+                          controller: _observacionesController,
+                          decoration: const InputDecoration(labelText: 'Observaciones', labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, ingresa la observación';
+                            }
+                            if (!RegExp(r'^[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ ]+$').hasMatch(value)) {
+                              return 'La observación solo puede contener letras';
+                            }
+                            return null;
+                          },
+                        ),
                 ],
               ),
             ),
@@ -323,6 +356,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
       'nombre': _nombreController.text,
       'cantidad': int.parse(_cantidadController.text),
       'unidadMedida': _unidadMedidaController.text,
+      'observaciones': _observacionesController.text
     };
 
     try {
@@ -338,6 +372,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
         _nombreController.clear();
         _cantidadController.clear();
         _unidadMedidaController.clear();
+        _observacionesController.clear();
 
         fetchInsumos().then((insumos) {
           setState(() {
@@ -369,6 +404,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
                 try {
                   final response = await http.delete(
                     Uri.parse('https://backendflutterdeli-1.onrender.com/api/insumos/$id'),
+                    
                   );
 
                   
@@ -410,6 +446,7 @@ class _InsumosScreenState extends State<InsumosScreen> {
                 Text('Nombre: ${insumo['nombre']}', style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
                 Text('Cantidad: ${insumo['cantidad']}', style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
                 Text('Unidad de Medida: ${insumo['unidadMedida']}', style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                Text('Observaciones: ${insumo['observaciones']}',  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)))
               ],
             ),
           ),
